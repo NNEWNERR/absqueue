@@ -70,19 +70,6 @@ export class EditPage implements OnInit {
   }
 
   async updatedate(id: string) {
-    const docRef = doc(db, 'person', id);
-    try {
-      // Set the "capital" field of the city 'DC'
-      await updateDoc(docRef, {
-        name: this.name,
-        lastname: this.lastname,
-        brithday: this.date,
-        phone: this.phone,
-      });
-    } catch (error) {}
-  }
-
-  async update(id: string) {
     try {
       const docRef = doc(db, 'person', id);
       await updateDoc(docRef, {
