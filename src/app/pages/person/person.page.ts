@@ -1,9 +1,9 @@
+import { FirebaseService } from 'src/app/service/firebase.service';
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 import { RouterModule } from '@angular/router';
-import { DataService } from 'src/app/service/data.service';
 
 @Component({
   selector: 'app-person',
@@ -14,16 +14,17 @@ import { DataService } from 'src/app/service/data.service';
 })
 export class PersonPage implements OnInit {
   path = 'person';
-  date = '2047-05-17';
+  date = '2023-04-20';
   name!: string;
   lastname!: string;
   phone!: string;
-  constructor(private dataservice: DataService) {}
 
-  ngOnInit() {}
+  constructor(private FirebaseService: FirebaseService) {}
+
+  ngOnInit(): void {}
 
   addData() {
-    this.dataservice.createDocument(
+    this.FirebaseService.addData(
       this.path,
       this.name,
       this.lastname,

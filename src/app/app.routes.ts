@@ -61,10 +61,17 @@ export const routes: Routes = [
   },
   {
     path: 'terms',
-    loadComponent: () => import('./pages/terms/terms.page').then( m => m.TermsPage)
+    loadComponent: () =>
+      import('./pages/terms/terms.page').then((m) => m.TermsPage),
   },
   {
     path: 'person',
-    loadComponent: () => import('./pages/person/person.page').then( m => m.PersonPage)
+    loadComponent: () =>
+      import('./pages/person/person.page').then((m) => m.PersonPage),
+  },
+  {
+    path: 'edit/:id',
+    loadComponent: () =>
+      import('./pages/edit/edit.page').then((m) => m.EditPage),
   },
 ];

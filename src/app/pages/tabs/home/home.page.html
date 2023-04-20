@@ -7,20 +7,21 @@
   </ion-toolbar>
 
 </ion-header>
-
 <ion-content [fullscreen]="true">
   <div style="padding: 5%;">
-    <ion-card style="padding: 10px;" *ngFor="let item of person">
-      <h2>{{ item.name }}</h2>
-      <p>
-        {{ item.lastname }}
-      </p>
-      <p>
-        {{ item.brithday }}
-      </p>
-      <p>
-        {{ item.phone }}
-      </p>
+
+    <ion-card *ngFor="let item of documents" style="padding: 8px;">
+      <ion-card-header>
+        <ion-card-title>{{item.name}}</ion-card-title>
+        <ion-card-subtitle>{{item.lastname}} - {{item.brithday}} - {{item.phone}}</ion-card-subtitle>
+      </ion-card-header>
+
+      <ion-card-content>
+        Here's a small text description for the card content. Nothing more, nothing less.
+      </ion-card-content>
+
+      <ion-button [routerLink]="['/edit', item.id]">แก้ไขข้อมูล</ion-button>
+      <ion-button color="danger" (click)="deleteData(item.id)">ลบ</ion-button>
     </ion-card>
   </div>
 </ion-content>

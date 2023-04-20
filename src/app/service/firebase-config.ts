@@ -1,6 +1,10 @@
 import { initializeApp } from 'firebase/app';
 import { getFirestore } from 'firebase/firestore';
 
+// Import the Firebase SDK
+import firebase from 'firebase/compat/app';
+import 'firebase/compat/firestore';
+
 const firebaseConfig = {
   // Add your Firebase project configuration here
   projectId: 'absdata-46619',
@@ -10,6 +14,8 @@ const firebaseConfig = {
   authDomain: 'absdata-46619.firebaseapp.com',
   messagingSenderId: '252976268944',
 };
+// Initialize Firebase
 const app = initializeApp(firebaseConfig);
 
-export const firestore = getFirestore(app);
+// Initialize Cloud Firestore and get a reference to the service
+export const db = getFirestore(app);
