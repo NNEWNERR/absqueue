@@ -1,0 +1,26 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>home</ion-title>
+  </ion-toolbar>
+
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <div style="padding: 5%;">
+    <ion-card style="padding: 10px;" *ngFor="let item of person">
+      <h2>{{ item.name }}</h2>
+      <p>
+        {{ item.lastname }}
+      </p>
+      <p>
+        {{ item.brithday }}
+      </p>
+      <p>
+        {{ item.phone }}
+      </p>
+    </ion-card>
+  </div>
+</ion-content>

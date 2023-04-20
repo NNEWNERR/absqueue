@@ -1,0 +1,42 @@
+<ion-header translucent="true">
+  <ion-toolbar>
+    <!-- <ion-buttons *ngIf="!showSearchbar" slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons> -->
+    <ion-title *ngIf=" !showSearchbar">
+      <div class="title">จองคิวตรวจเลือด</div>
+    </ion-title>
+    <ion-searchbar *ngIf="showSearchbar" showCancelButton="always" (ionCancel)="showSearchbar = false"
+      placeholder="Search"></ion-searchbar>
+    <ion-buttons slot="end">
+      <ion-button *ngIf="!showSearchbar" (click)="showSearchbar = true">
+        <ion-icon slot="icon-only" name="search"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <div class="container-card" *ngFor="let item of hospitalModel">
+    <div class="container-card-header">
+      <div class="title">{{item.title}}</div>
+    </div>
+    <ion-grid>
+      <ion-card-content>
+        <ion-grid>
+          <ion-row class="centered-row">
+            <ion-col size="8" style="text-align: left; align-items: center;">
+              <div class="title">{{item.room}}</div>
+              <div class="subtitle" style="color: #787878">{{item.onwork}}</div>
+              <div class="subtitle" style="color: #787878">{{item.queue}}</div>
+            </ion-col>
+            <ion-col>
+              <ion-button [routerLink]="['/terms']" class="sub-button" fill="outline">จองคิว</ion-button>
+              <ion-button class="sub-button" fill="outline">ดูคิวว่าง</ion-button>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-card-content>
+    </ion-grid>
+  </div>
+</ion-content>

@@ -1,0 +1,57 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>ข้อกำหนดและเงื่อนไขการให้บริการ</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="ion-padding">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">terms</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-label>
+    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Labore doloribus maiores tempora provident? Repellendus
+    aperiam cum perferendis veritatis a. Officia rerum enim qui, non minus ullam ex repudiandae perspiciatis possimus
+    alias, atque quaerat doloribus tenetur mollitia recusandae quisquam ea fugit explicabo assumenda, minima
+    voluptatibus iste. Beatae nam dolorem cupiditate repellendus minima impedit veritatis asperiores doloremque, nulla
+    officiis, cumque aliquam enim in, a ipsa! Inventore ducimus sunt distinctio officiis officia deserunt aut modi
+    ratione voluptatibus. Nam obcaecati magnam, voluptatibus quo accusantium ipsa molestias perspiciatis, officia
+    perferendis blanditiis aut minus accusamus, harum similique neque soluta suscipit id eaque deserunt saepe laborum
+    itaque! Labore aut laudantium nesciunt aspernatur velit sit assumenda cumque error asperiores quo possimus,
+    accusantium rem ipsa quam? Obcaecati nihil non doloremque esse animi, pariatur sequi atque vero autem deleniti
+    suscipit expedita veniam mollitia qui ex, totam iusto error. Unde obcaecati cupiditate accusamus mollitia quidem,
+    quod rem placeat in, ipsa, aliquam suscipit autem animi sapiente! Enim ducimus id, quis officia expedita at rem
+    reprehenderit fugiat minus doloremque. Repudiandae officiis laborum eos ipsa praesentium cumque consequatur.
+    Provident neque atque sunt animi, in excepturi aut asperiores tempore commodi non, recusandae ducimus maiores
+    exercitationem illo quaerat explicabo beatae dicta voluptate voluptatem consectetur sapiente aperiam! Lorem ipsum
+    dolor sit amet consectetur adipisicing elit. Impedit, necessitatibus cupiditate et placeat dolorem omnis pariatur
+    ipsam maxime adipisci voluptatibus illum deleniti ex tempore nulla officia sunt sit rerum quam quis facilis rem.
+    Amet corporis enim ea ipsum incidunt, ab repellendus quisquam sed soluta beatae ullam deserunt consequuntur sit
+    saepe voluptas officiis molestias voluptatum. Vel quibusdam odit voluptatem sint reprehenderit amet error commodi
+    quidem, facere saepe! Sunt id numquam, eaque rem explicabo, illum temporibus ipsam assumenda voluptatibus ad cumque
+    sit animi neque amet, soluta hic aspernatur harum eveniet? Minus cum quidem quo. Reiciendis ipsam quod doloribus
+    tenetur vel modi deserunt!
+  </ion-label>
+
+  <br>
+  <ion-grid>
+    <ion-row>
+      <ion-col size="auto">
+        <ion-checkbox [(ngModel)]="isButtonDisabled"></ion-checkbox>
+      </ion-col>
+      <ion-col>
+        <div style="font-size: 14px;">ตกลงและยอมรับข้อกำหนดและเงื่อนไขการให้บริการ</div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
+
+<ion-footer style="background-color: white;">
+  <div style="display: flex; justify-content: space-between; padding: 10px;">
+    <ion-button [routerLink]="['/sidemenu/tabs/booking']" class="sub-button" fill="clear">ยกเลิก</ion-button>
+    <ion-button class="sub-button" [routerLink]="['/person']"
+      [disabled]="!isButtonDisabled">ดำเนินการต่อ</ion-button>
+  </div>
+</ion-footer>
