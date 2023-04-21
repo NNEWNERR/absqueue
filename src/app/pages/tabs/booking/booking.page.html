@@ -17,7 +17,7 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <div class="container-card" *ngFor="let item of hospitalModel">
+  <!-- <div class="container-card" *ngFor="let item of hospitalModel">
     <div class="container-card-header">
       <div class="title">{{item.title}}</div>
     </div>
@@ -38,5 +38,31 @@
         </ion-grid>
       </ion-card-content>
     </ion-grid>
+  </div> -->
+
+  <div style="padding: 16px;">
+    <ion-card *ngFor="let item of hospitalModel" style="margin-bottom: 16px;">
+      <ion-card-header>
+        <ion-card-title>{{item.title}}</ion-card-title>
+      </ion-card-header>
+
+      <ion-card-content>
+        <ion-grid fixed>
+          <ion-row class="centered-row">
+            <ion-col size="8" style="text-align: left; align-items: center;">
+              <div class="title">{{item.room}}</div>
+              <div class="subtitle">{{item.onwork}}</div>
+              <div class="subtitle">{{item.queue}}</div>
+            </ion-col>
+            <ion-col>
+              <ion-button [routerLink]="['/terms']" class="sub-button" fill="outline">จองคิว</ion-button>
+              <ion-button class="sub-button" fill="outline">ดูคิวว่าง</ion-button>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-card-content>
+    </ion-card>
   </div>
+
+
 </ion-content>
