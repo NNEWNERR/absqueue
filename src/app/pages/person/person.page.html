@@ -1,34 +1,25 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>person</ion-title>
+    <ion-title>ข้อมูลผู้ต้องการจองคิว</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true" class="ion-padding">
-  <ion-list>
-    <ion-label>ขื่อ</ion-label>
-    <div style="margin-bottom: 10px;"></div>
-    <ion-item>
-      <ion-input type="text" placeholder="ขื่อ" [(ngModel)]="name"></ion-input>
-    </ion-item>
-  </ion-list>
+  <div style="margin: 10px;"></div>
+  <ion-label>ชื่อ (ไม่ต้องใส่คำนำหน้าชื่อ)</ion-label>
+  <div style="margin: 10px;"></div>
+  <ion-input class="custom" type="text" placeholder="ระบุชื่อผู้ที่ต้องการจอง" [(ngModel)]="name"></ion-input>
+  <div style="margin: 10px;"></div>
 
-  <div style="margin-bottom: 16px;"></div>
-
-  <ion-list>
-    <ion-label>นามสกุล</ion-label>
-    <div style="margin-bottom: 10px;"></div>
-    <ion-item>
-      <ion-input type="text" placeholder="นามสกุล" [(ngModel)]="lastname"></ion-input>
-    </ion-item>
-  </ion-list>
-
-  <div style="margin-bottom: 16px;"></div>
+  <ion-label>นามสกุล</ion-label>
+  <div style="margin: 10px;"></div>
+  <ion-input class="custom" type="text" placeholder="ระบุนามสกุลผู้ที่ต้องการจอง" [(ngModel)]="lastname"></ion-input>
+  <div style="margin: 10px;"></div>
 
   <ion-list>
     <label>วัน เดือน ปีเกิด</label>
     <div style="margin-bottom: 10px;"></div>
-    <ion-item button="true" id="open-date-input">
+    <ion-item button="true" id="open-date-input" class="custom">
       <ion-label>
         เลือกวันที่
       </ion-label>
@@ -40,14 +31,12 @@
       </ion-popover>
     </ion-item>
   </ion-list>
-  <div style="margin-bottom: 16px;"></div>
-  <ion-list>
-    <ion-label>เบอร์โทรศัทพ์</ion-label>
-    <div style="margin-bottom: 10px;"></div>
-    <ion-item>
-      <ion-input type="tel" placeholder="0xx-xxx-xxxx" [(ngModel)]="phone"></ion-input>
-    </ion-item>
-  </ion-list>
+
+  <div style="margin: 10px;"></div>
+  <ion-label>เบอร์โทรศัทพ์</ion-label>
+  <div style="margin: 10px;"></div>
+  <ion-input class="custom" type="text" placeholder="0xx-xxx-xxxx" [(ngModel)]="phone" maxlength="10"></ion-input>
+  <div style="margin: 10px;"></div>
 </ion-content>
 
 <ion-footer style="background-color: white;">
