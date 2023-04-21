@@ -35,6 +35,7 @@ export class EditPage implements OnInit {
   _phone: string = '';
   _date: string = '';
   _id: string = '';
+
   constructor(
     private route: ActivatedRoute,
     private FirebaseService: FirebaseService
@@ -49,12 +50,10 @@ export class EditPage implements OnInit {
       this.docId = id;
       this._id = id;
     }
-    // Call getDoc to retrieve the data of the document with the given ID
     const docRef = doc(db, this.path, this.docId);
     getDoc(docRef).then((doc) => {
       if (doc.exists()) {
         const data = doc.data();
-        // Assign the retrieved data to the properties that are bound to the form fields
         this._name = data['name'];
         this._lastname = data['lastname'];
         this._date = data['brithday'];
@@ -63,7 +62,6 @@ export class EditPage implements OnInit {
         console.log('No such document!');
       }
     });
-    // You can use this.docId to retrieve the document data and populate the form
   }
 
   async getDocuments() {

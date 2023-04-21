@@ -7,6 +7,8 @@ import { routes } from './app/app.routes';
 import { AppComponent } from './app/app.component';
 import { environment } from './environments/environment';
 
+// Import the typeOrm
+
 // Import the Firebase SDK
 import 'firebase/compat/firestore';
 import { initializeApp } from 'firebase/app';

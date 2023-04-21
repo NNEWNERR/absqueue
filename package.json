@@ -27,6 +27,7 @@
     "@capacitor/keyboard": "next",
     "@capacitor/status-bar": "next",
     "@ionic/angular": "^7.0.0",
+    "@nestjs/mapped-types": "*",
     "firebase": "^9.20.0",
     "ionicons": "^7.0.0",
     "rxjs": "~7.5.0",
