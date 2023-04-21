@@ -1,11 +1,12 @@
 import { Injectable } from '@angular/core';
 import { getFirestore, addDoc, collection } from 'firebase/firestore';
 import { person } from '../model/person.model';
+import { ToastController } from '@ionic/angular';
 @Injectable({
   providedIn: 'root',
 })
 export class FirebaseService {
-  constructor() {}
+  constructor(private toastController: ToastController) {}
 
   // Get a Firestore instance
   firestore = getFirestore();
@@ -26,9 +27,19 @@ export class FirebaseService {
         phone: _phone,
       };
       const docRef = await addDoc(collection(this.firestore, _path), person);
-      alert('Document written with ID: ' + docRef.id);
+
+      this.presentToast('middle', 'Document written with ID: ' + docRef.id);
     } catch (e) {
-      alert('Error adding document: ' + e);
+      this.presentToast('middle', 'Error adding document: ' + e);
     }
+  }
+
+  async presentToast(position: 'top' | 'middle' | 'bottom', message: string) {
+    const toast = await this.toastController.create({
+      message: message,
+      duration: 1500,
+      position: position,
+    });
+    await toast.present();
   }
 }

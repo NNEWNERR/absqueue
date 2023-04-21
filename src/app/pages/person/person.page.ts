@@ -2,7 +2,7 @@ import { FirebaseService } from 'src/app/service/firebase.service';
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { IonicModule } from '@ionic/angular';
+import { IonicModule, ToastController } from '@ionic/angular';
 import { RouterModule } from '@angular/router';
 
 @Component({

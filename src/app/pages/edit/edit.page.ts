@@ -1,3 +1,4 @@
+import { FirebaseService } from 'src/app/service/firebase.service';
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -34,7 +35,10 @@ export class EditPage implements OnInit {
   _phone: string = '';
   _date: string = '';
   _id: string = '';
-  constructor(private route: ActivatedRoute) {
+  constructor(
+    private route: ActivatedRoute,
+    private FirebaseService: FirebaseService
+  ) {
     this.docId = '';
   }
 
@@ -78,9 +82,16 @@ export class EditPage implements OnInit {
         brithday: this.date,
         phone: this.phone,
       });
-      alert(`Document with ID ${docRef.id} has been updated.`);
+      this.FirebaseService.presentToast(
+        'middle',
+        `Document with ID ${docRef.id} has been updated.`
+      );
     } catch (error) {
-      console.error('Error updating document: ', error);
+      console.error();
+      this.FirebaseService.presentToast(
+        'middle',
+        'Error updating document: ' + error
+      );
     }
   }
 }
