@@ -10,7 +10,7 @@ import {
 
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { IonicModule } from '@ionic/angular';
+import { IonicModule, LoadingController } from '@ionic/angular';
 import { db } from 'src/app/service/firebase-config';
 import { RouterModule } from '@angular/router';
 
@@ -25,7 +25,10 @@ export class HomePage implements OnInit {
   documents: any[] = [];
   unsubscribe: any;
 
-  constructor(private cdRef: ChangeDetectorRef) {}
+  constructor(
+    private cdRef: ChangeDetectorRef,
+    private loadingCtrl: LoadingController
+  ) {}
 
   ngOnInit() {
     this.getDocuments();
@@ -73,6 +76,12 @@ export class HomePage implements OnInit {
   }
 
   async deleteData(id: string) {
+    const loading = await this.loadingCtrl.create({
+      message: 'loading..',
+      spinner: 'circles',
+    });
+    await loading.present();
+
     const docRef = doc(db, 'person', id);
     try {
       await deleteDoc(docRef);
