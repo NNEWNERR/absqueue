@@ -2,7 +2,7 @@ import { FirebaseService } from 'src/app/service/firebase.service';
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { IonicModule, ToastController } from '@ionic/angular';
+import { IonicModule } from '@ionic/angular';
 import { RouterModule } from '@angular/router';
 
 @Component({
@@ -14,22 +14,27 @@ import { RouterModule } from '@angular/router';
 })
 export class PersonPage implements OnInit {
   path = 'person';
-  date = '2023-04-20';
-  name!: string;
-  lastname!: string;
-  phone!: string;
+  name: string = '';
+  lastname: string = '';
+  birthday = '2023-04-20';
+  phone: string = '';
 
-  constructor(private FirebaseService: FirebaseService) {}
+  constructor(private firebaseService: FirebaseService) {}
 
   ngOnInit(): void {}
 
-  addData() {
-    this.FirebaseService.addData(
-      this.path,
+  async addData() {
+    // call the FirebaseService function to create the document
+    await this.firebaseService.createUser(
+      'person',
       this.name,
       this.lastname,
-      this.date,
+      this.birthday,
       this.phone
     );
+    this.name = '';
+    this.lastname = '';
+    this.birthday = '';
+    this.phone = '';
   }
 }

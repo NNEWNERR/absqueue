@@ -19,8 +19,11 @@
         Here's a small text description for the card content. Nothing more, nothing less.
       </ion-card-content>
 
-      <ion-button [routerLink]="['/edit', item.id]">แก้ไขข้อมูล</ion-button>
-      <ion-button color="danger" (click)="deleteData(item.id)">ลบข้อมูล</ion-button>
+      <ion-button [routerLink]="['/edit', item.id]">
+        <ion-icon slot="start" name="create-outline"></ion-icon>
+        แก้ไขข้อมูล
+      </ion-button>
+      <ion-button color="danger" (click)="handleDelete(item.id)">ลบข้อมูล</ion-button>
     </ion-card>
   </div>
 </ion-content>

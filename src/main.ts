@@ -1,4 +1,10 @@
-import { enableProdMode, importProvidersFrom } from '@angular/core';
+import {
+  ApplicationRef,
+  ChangeDetectorRef,
+  ErrorHandler,
+  enableProdMode,
+  importProvidersFrom,
+} from '@angular/core';
 import { bootstrapApplication } from '@angular/platform-browser';
 import { RouteReuseStrategy, provideRouter } from '@angular/router';
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
@@ -13,6 +19,7 @@ import { environment } from './environments/environment';
 import 'firebase/compat/firestore';
 import { initializeApp } from 'firebase/app';
 import { getFirestore } from 'firebase/firestore';
+import { FirebaseService } from './app/service/firebase.service';
 
 const firebaseConfig = {
   // Add your Firebase project configuration here
@@ -30,7 +37,13 @@ if (environment.production) {
 
 bootstrapApplication(AppComponent, {
   providers: [
+    FirebaseService,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
+    { provide: ErrorHandler, useClass: ErrorHandler },
+    {
+      provide: ChangeDetectorRef,
+      useExisting: ApplicationRef,
+    },
     importProvidersFrom(IonicModule.forRoot({})),
     provideRouter(routes),
   ],

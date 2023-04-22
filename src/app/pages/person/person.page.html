@@ -23,10 +23,11 @@
       <ion-label>
         เลือกวันที่
       </ion-label>
-      <ion-text slot="end">{{ date }}</ion-text>
+      <ion-text slot="end">{{ birthday }}</ion-text>
       <ion-popover id="date-input-popover" trigger="open-date-input" [showBackdrop]="true " side="top" alignment="end">
         <ng-template>
-          <ion-datetime max="2056" presentation="date" [(ngModel)]="date" [showDefaultButtons]="true"></ion-datetime>
+          <ion-datetime max="2056" presentation="date" [(ngModel)]="birthday"
+            [showDefaultButtons]="true"></ion-datetime>
         </ng-template>
       </ion-popover>
     </ion-item>
