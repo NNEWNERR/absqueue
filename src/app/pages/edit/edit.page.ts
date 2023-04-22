@@ -1,5 +1,5 @@
 import { FirebaseService } from 'src/app/service/firebase.service';
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
@@ -12,7 +12,11 @@ import {
   updateDoc,
 } from 'firebase/firestore';
 import { db } from 'src/app/service/firebase-config';
-import { person } from 'src/app/model/person.model';
+
+interface User {
+  name: string;
+  last: string;
+}
 
 @Component({
   selector: 'app-edit',
@@ -38,13 +42,14 @@ export class EditPage implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private FirebaseService: FirebaseService
+    private firebaseService: FirebaseService,
+    private cdRef: ChangeDetectorRef
   ) {
     this.docId = '';
   }
 
   ngOnInit() {
-    this.getDocuments();
+    this.firebaseService.getDocuments('person');
     const id = this.route.snapshot.paramMap.get('id');
     if (id !== null) {
       this.docId = id;
@@ -64,32 +69,13 @@ export class EditPage implements OnInit {
     });
   }
 
-  async getDocuments() {
-    const querySnapshot = await getDocs(collection(db, 'person'));
-    this.documents = querySnapshot.docs.map((doc) => {
-      return { id: doc.id, ...doc.data() };
-    });
-  }
-
-  async updatedate(id: string) {
-    try {
-      const docRef = doc(db, 'person', id);
-      await updateDoc(docRef, {
-        name: this.name,
-        lastname: this.lastname,
-        brithday: this.date,
-        phone: this.phone,
-      });
-      this.FirebaseService.presentToast(
-        'middle',
-        `Document with ID ${docRef.id} has been updated.`
-      );
-    } catch (error) {
-      console.error();
-      this.FirebaseService.presentToast(
-        'middle',
-        'Error updating document: ' + error
-      );
-    }
+  handleUpdate(id: string) {
+    this.firebaseService.updateData(
+      id,
+      this.name,
+      this.lastname,
+      this.date,
+      this.phone
+    );
   }
 }
