@@ -6,7 +6,11 @@ import {
   importProvidersFrom,
 } from '@angular/core';
 import { bootstrapApplication } from '@angular/platform-browser';
-import { RouteReuseStrategy, provideRouter } from '@angular/router';
+import {
+  RouteReuseStrategy,
+  RouterModule,
+  provideRouter,
+} from '@angular/router';
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 
 import { routes } from './app/app.routes';
@@ -20,6 +24,7 @@ import 'firebase/compat/firestore';
 import { initializeApp } from 'firebase/app';
 import { getFirestore } from 'firebase/firestore';
 import { FirebaseService } from './app/service/firebase.service';
+import { HttpClientModule } from '@angular/common/http';
 
 const firebaseConfig = {
   // Add your Firebase project configuration here
@@ -44,7 +49,11 @@ bootstrapApplication(AppComponent, {
       provide: ChangeDetectorRef,
       useExisting: ApplicationRef,
     },
-    importProvidersFrom(IonicModule.forRoot({})),
+    importProvidersFrom(
+      IonicModule.forRoot({}),
+      HttpClientModule,
+      RouterModule
+    ),
     provideRouter(routes),
   ],
 });

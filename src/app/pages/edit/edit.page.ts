@@ -42,8 +42,7 @@ export class EditPage implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private firebaseService: FirebaseService,
-    private cdRef: ChangeDetectorRef
+    private firebaseService: FirebaseService
   ) {
     this.docId = '';
   }
@@ -56,6 +55,7 @@ export class EditPage implements OnInit {
       this._id = id;
     }
     const docRef = doc(db, this.path, this.docId);
+
     getDoc(docRef).then((doc) => {
       if (doc.exists()) {
         const data = doc.data();

@@ -1,45 +1,74 @@
+import { PostgresService } from './../../../service/postgres.service';
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { IonicModule } from '@ionic/angular';
+import { IonicModule, LoadingController } from '@ionic/angular';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
+import { catchError, throwError } from 'rxjs';
 
 @Component({
   selector: 'app-booking',
   templateUrl: './booking.page.html',
   styleUrls: ['./booking.page.scss'],
   standalone: true,
-  imports: [IonicModule, CommonModule, FormsModule, RouterModule],
+  imports: [
+    IonicModule,
+    CommonModule,
+    FormsModule,
+    RouterModule,
+    HttpClientModule,
+  ],
 })
 export class BookingPage implements OnInit {
-  constructor() {}
+  constructor(
+    private http: HttpClient,
+    private postgresService: PostgresService,
+    private loadingController: LoadingController
+  ) {}
   showSearchbar: boolean = false;
-  ngOnInit() {}
+  hospital: any[] = [];
 
-  hospitalModel = [
-    {
-      title: 'โรงพยาบาลบ้านแพ้ว',
-      room: 'ห้องเจาะเลือด OPD',
-      onwork: 'วันทำการ: จ-ศ 8:00-12:00น',
-      queue: 'จำนวนคิว: วันละ 70 คิว',
-    },
-    {
-      title: 'โรงพยาบาลสมุทรสงคราม',
-      room: 'ห้องเจาะเลือด DCK',
-      onwork: 'วันทำการ: จ-ศ 8:00-12:00น',
-      queue: 'จำนวนคิว: วันละ 50 คิว',
-    },
-    {
-      title: 'โรงพยาบาลกรุงเทพ',
-      room: 'ห้องเจาะเลือด SOS',
-      onwork: 'วันทำการ: จ-ศ 8:00-12:00น',
-      queue: 'จำนวนคิว: วันละ 65 คิว',
-    },
-    {
-      title: 'โรงพยาบาลนนทบุรี',
-      room: 'ห้องเจาะเลือด OPA',
-      onwork: 'วันทำการ: จ-ศ 8:00-12:00น',
-      queue: 'จำนวนคิว: วันละ 50 คิว',
-    },
-  ];
+  ngOnInit() {
+    this.getRefresh();
+    // subscribe to the hospitalAdded$ observable of the DataService to refresh data when a hospital is added
+    this.postgresService.hospitalAdded$.subscribe(() => {
+      this.getData();
+    });
+    console.log('booking page');
+  }
+
+  getData() {
+    this.http
+      .get<any[]>('http://localhost:3000/api/hospital')
+      .pipe(
+        catchError((error) => {
+          console.error(error);
+          return throwError(error);
+        })
+      )
+      .subscribe((data) => {
+        this.hospital = data;
+        console.log(this.hospital);
+      });
+  }
+
+  async getRefresh() {
+    const loading = await this.loadingController.create({
+      message: 'กำลังดำเนินการ..',
+      spinner: 'circles',
+    });
+    await loading.present();
+    this.postgresService.getData().subscribe((data) => {
+      this.hospital = data;
+      console.log(this.hospital);
+    });
+    loading.dismiss();
+  }
+
+  handlerDelete(id: number) {
+    this.postgresService.deleteHospital(id).then(() => {
+      this.getRefresh();
+    });
+  }
 }

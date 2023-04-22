@@ -1,0 +1,37 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>เพิ่มโรงพยาบาล</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="ion-padding">
+  <div style="margin: 10px;"></div>
+  <ion-label>ชื่อโรงพยาบาล</ion-label>
+  <div style="margin: 10px;"></div>
+  <ion-input class="custom" type="text" placeholder="ระบุชื่อผู้ที่ต้องการจอง" [(ngModel)]="name"></ion-input>
+  <div style="margin: 10px;"></div>
+
+  <ion-label>ห้องที่บริการ</ion-label>
+  <div style="margin: 10px;"></div>
+  <ion-input class="custom" type="text" placeholder="ห้องที่บริการ" [(ngModel)]="room"></ion-input>
+  <div style="margin: 10px;"></div>
+
+  <ion-label>รายละเอียดวันและเวลา</ion-label>
+  <div style="margin: 10px;"></div>
+  <ion-input class="custom" type="text" placeholder="รายละเอียดวันและเวลา" [(ngModel)]="onwork"></ion-input>
+  <div style="margin: 10px;"></div>
+
+  <div style="margin: 10px;"></div>
+  <ion-label>จำนวนคิวที่รับต่อวัน</ion-label>
+  <div style="margin: 10px;"></div>
+  <ion-input class="custom" type="text" placeholder="จำนวนคิว" [(ngModel)]="queue" maxlength="3"></ion-input>
+  <div style="margin: 10px;"></div>
+</ion-content>
+
+<ion-footer style=" background-color: white;">
+  <div style="display: flex; justify-content: space-between; padding: 10px;">
+    <ion-button (click)="get()" [routerLink]="['/sidemenu/tabs/booking']" class="sub-button"
+      fill="clear">ยกเลิก</ion-button>
+    <ion-button (click)="handleAddHospital()">บันทึก</ion-button>
+  </div>
+</ion-footer>
