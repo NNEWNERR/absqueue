@@ -10,10 +10,7 @@ import { Hospital } from 'postgres-sql/dist/hospital/entities/hospital.entity';
   providedIn: 'root',
 })
 export class PostgresService {
-  constructor(
-    private http: HttpClient,
-    private loadingController: LoadingController
-  ) {}
+  constructor(private http: HttpClient) {}
   hospital: any[] = [];
 
   async addHospital(name: string, room: string, onwork: string, queue: string) {
